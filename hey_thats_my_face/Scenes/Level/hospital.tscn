@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ciklmbe8xfp5t"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mj0lg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q6ha6"]
+size = Vector3(100, 0.1, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4xls1"]
+size = Vector3(100, 0.1, 100)
+
+[node name="Hospital" type="Node3D" unique_id=556548433]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1418298748]
+physics_material_override = SubResource("PhysicsMaterial_mj0lg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1723569102]
+shape = SubResource("BoxShape3D_q6ha6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=251835455]
+mesh = SubResource("BoxMesh_4xls1")
