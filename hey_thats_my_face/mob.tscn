@@ -21,15 +21,21 @@ shape = SubResource("CapsuleShape3D_b3mxk")
 
 [node name="SimpleVision3D" type="Node3D" parent="." unique_id=1660342861]
 script = ExtResource("2_p11y5")
-Distance = 5.0
+Distance = 10.0
 BaseWidth = 1.0
-EndWidth = 10.0
+EndWidth = 5.0
+BaseHeight = 2.0
+EndHeight = 10.0
+BaseConeSize = 2.0
 
 [node name="FollowTarget3D" type="NavigationAgent3D" parent="." unique_id=941098976]
 script = ExtResource("3_s5nov")
+TurnSpeed = 0.01
 
 [node name="RandomTarget3D" type="Node3D" parent="." unique_id=439741599]
 script = ExtResource("4_b3mxk")
+MaxAngleRange = -60
+MinAngleRange = 60
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1288315881]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
