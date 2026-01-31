@@ -5,14 +5,16 @@ const CROUCH_SPEED = 2.5
 const JUMP_VELOCITY = 4.5
 const CROUCH_HEIGHT = 0.5
 
-@onready var kill_prompt_label: Label = get_node_or_null("../CanvasLayer/InteractionPrompt")
+@onready var interact_prompt_label: Label = get_node_or_null("../CanvasLayer/InteractionPrompt")
 var is_crouching = false
 var speed = CROUCH_SPEED if is_crouching else NORMAL_SPEED
 var normal_height = 0.0
 var mouse_sensitivity = 0.003
 var mouse_delta = Vector2.ZERO
 var can_kill := false
+var can_interact := false
 var kill_target: Node3D = null
+var interact_target: StaticBody3D = null
 
 func _ready() -> void:
 	normal_height = $CollisionShape3D.shape.height
@@ -38,11 +40,20 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("interact"):
 		if can_kill and kill_target:
 			kill_target.queue_free()
-			if kill_prompt_label:
-				kill_prompt_label.text = ""
-				kill_prompt_label.visible = false
+			if interact_prompt_label:
+				interact_prompt_label.text = ""
+				interact_prompt_label.visible = false
 			can_kill = false
 			kill_target = null
+		if can_interact and interact_target:
+			interact_target.toggle_door()
+			if interact_prompt_label:
+				interact_prompt_label.text = ""
+				interact_prompt_label.visible = false
+			can_interact = false
+			interact_target = null
+
+
 
 	# Handle jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -157,22 +168,36 @@ func _on_interaction_zone_area_entered(area: Area3D) -> void:
 	if area.is_in_group("danger_zone"):
 		print("Danger entered!")
 	if area.is_in_group("killable"):
-		if kill_prompt_label:
-			kill_prompt_label.text = "Kill him {press E}"
-			kill_prompt_label.visible = true
+		if interact_prompt_label:
+			interact_prompt_label.text = "Kill him {press E}"
+			interact_prompt_label.visible = true
 			can_kill = true
 			kill_target = area.get_parent()
 			print("KILL HIM!")
+	if area.is_in_group("interactable"):
+		if interact_prompt_label:
+			interact_prompt_label.text = "open doors {press E}"
+			interact_prompt_label.visible = true
+			can_interact = true
+			interact_target = area.get_parent().toggle_door()
+			print("interactable area in range")
 	print("area entered")
 
 func _on_interaction_zone_area_exited(area: Area3D) -> void:
 	if area.is_in_group("danger_zone"):
 		print("Escaped danger")
 	if area.is_in_group("killable"):
-		if kill_prompt_label:
-			kill_prompt_label.text = ""
-			kill_prompt_label.visible = false
-		can_kill = false
-		kill_target = null
-		print("cant kill him anymore")
-	print("area exited")
+		if interact_prompt_label:
+			interact_prompt_label.text = ""
+			interact_prompt_label.visible = false
+			can_kill = false
+			kill_target = null
+			print("cant kill him anymore")
+	if area.is_in_group("interactable"):
+		if interact_prompt_label:
+			interact_prompt_label.text = ""
+			interact_prompt_label.visible = false
+			can_interact = false
+			interact_target = null
+
+		print("area exited")
