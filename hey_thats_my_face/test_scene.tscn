@@ -13,7 +13,7 @@ sky = SubResource("Sky_coq8p")
 vertices = PackedVector3Array(-2.8000002, 0.35000002, -2.8000002, -2.8000002, 0.35000002, 2.6999998, 2.6999998, 0.35000002, 2.6999998, 2.6999998, 0.35000002, -2.8000002)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 cell_height = 0.2
-border_size = 0.25
+border_size = 2.0
 agent_height = 2.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7cbxl"]
@@ -29,13 +29,14 @@ environment = SubResource("Environment_2nij2")
 navigation_mesh = SubResource("NavigationMesh_ia1lp")
 
 [node name="Ground" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=1068631181]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 mesh = SubResource("PlaneMesh_7cbxl")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Ground" unique_id=1314071440]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Ground/StaticBody3D" unique_id=472083912]
-transform = Transform3D(2.2, 0, 0, 0, 0.1, 0, 0, 0, 2.2, 0, -0.1, 0)
+transform = Transform3D(3, 0, 0, 0, 0.1, 0, 0, 0, 3, 0, -0.1, 0)
 shape = SubResource("BoxShape3D_8pr8v")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1002729656]
