@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://c2y8vlhmm8a1n"]
+
+[ext_resource type="Script" uid="uid://e0dbaq47103i" path="res://door.gd" id="1_w6aom"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h7j2x"]
+size = Vector3(1.5, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h7j2x"]
+size = Vector3(1.5, 3, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w6aom"]
+size = Vector3(1.5, 2, 2)
+
+[node name="door" type="StaticBody3D" unique_id=578705689]
+script = ExtResource("1_w6aom")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1043858618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1.25, 0)
+shape = SubResource("BoxShape3D_h7j2x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1057402363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1.5, 0)
+mesh = SubResource("BoxMesh_h7j2x")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=489836035 groups=["doors"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1431604307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1.5, 0)
+shape = SubResource("BoxShape3D_w6aom")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
