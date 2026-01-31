@@ -11,6 +11,7 @@ var _player_in_range: bool = false
 func _ready():
 	_current_angle = rotation_degrees.y
 	_target_angle = _current_angle
+	$Area3D.add_to_group("interactable")
 
 func _process(delta):
 	if abs(_current_angle - _target_angle) > 0.1:
