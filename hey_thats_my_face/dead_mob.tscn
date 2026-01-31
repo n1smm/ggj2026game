@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dngfffw3t0nut"]
+
+[ext_resource type="Script" uid="uid://bq81ky0ldhv7t" path="res://dead_mob.gd" id="1_bsbqc"]
+[ext_resource type="Texture2D" uid="uid://cy0crlajn8pis" path="res://Assets/models/nurse_dead.PNG" id="1_id5sa"]
+[ext_resource type="Texture2D" uid="uid://cro1v43liwa8c" path="res://Assets/models/nurse_noface.PNG" id="3_xpgxk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q8kpj"]
+size = Vector3(3.3251343, 1.6375732, 0.6265259)
+
+[node name="DeadMob" type="StaticBody3D" unique_id=1975194197]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.2, 0)
+script = ExtResource("1_bsbqc")
+
+[node name="FaceOn" type="Sprite3D" parent="." unique_id=734877324]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+texture = ExtResource("1_id5sa")
+
+[node name="FaceOff" type="Sprite3D" parent="." unique_id=889873342]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+visible = false
+texture = ExtResource("3_xpgxk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1453972290]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06484985, 0.31878662, 0.0008239746)
+shape = SubResource("BoxShape3D_q8kpj")

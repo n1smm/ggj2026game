@@ -1,6 +1,8 @@
 extends Node
 
 signal aggression_changed(factor: float)
+signal speed_up_mob()
+signal mob_killed()
 
 @export var game_duration: float = 5.0  # 5 minutes default
 

@@ -1,9 +1,16 @@
 extends CharacterBody3D
 
+
 const NORMAL_SPEED = 5.0
 const CROUCH_SPEED = 2.5
 const JUMP_VELOCITY = 4.5
 const CROUCH_HEIGHT = 0.5
+
+var PICKABLES = {
+	"Scalpel": 0,
+	"Mask": 0,
+	"Doctor": 0
+	}
 
 @onready var interact_prompt_label: Label = get_node_or_null("../CanvasLayer/InteractionPrompt")
 @onready var time_label: Label = get_node_or_null("../CanvasLayer/Time")
@@ -12,9 +19,12 @@ var speed = CROUCH_SPEED if is_crouching else NORMAL_SPEED
 var normal_height = 0.0
 var mouse_sensitivity = 0.003
 var mouse_delta = Vector2.ZERO
+
 var can_kill := false
 var can_interact := false
+var can_pickup := false
 var kill_target: Node3D = null
+var pickup_target = null
 var interact_target: StaticBody3D = null
 
 var time_left := 0.0
@@ -48,19 +58,46 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	#handle interact
-	if Input.is_action_pressed("interact"):
-		if can_kill and kill_target:
-			kill_target.queue_free()
+	if Input.is_action_just_pressed("interact"):
+		if can_kill and kill_target and PICKABLES["Scalpel"] > 0:
+			if kill_target.has_method("die"):
+				kill_target.die()
+			else:
+				kill_target.queue_free()
 			if interact_prompt_label:
 				interact_prompt_label.text = ""
 				interact_prompt_label.visible = false
+				PICKABLES["Scalpel"] -= 5
+				if GameManager:
+					GameManager.emit_signal("speed_up_mob")
 			can_kill = false
 			kill_target = null
-		if can_interact and interact_target:
+		elif can_interact and interact_target:
 			interact_target.toggle_door()
 			if interact_prompt_label:
 				interact_prompt_label.text = ""
 				interact_prompt_label.visible = false
+		elif can_pickup and pickup_target:
+			if interact_prompt_label:
+				interact_prompt_label.text = ""
+				interact_prompt_label.visible = false
+
+			# Check by method instead of name to handle dynamic instances
+			if pickup_target.has_method("handle_face"):
+				PICKABLES["Mask"] = 1
+				pickup_target.handle_face()
+				print("harvested face/mask")
+			elif pickup_target.name == "Scalpel":
+				PICKABLES["Scalpel"] = 15
+				pickup_target.queue_free()
+				print("scalpel")
+			elif pickup_target.name == "Doctor":
+				PICKABLES["Doctor"] = 4
+				print("doctor mask")
+			else:
+				print("unknown pickable: " + pickup_target.name)
+
+
 
 
 
@@ -105,57 +142,6 @@ func _physics_process(delta: float) -> void:
 	var forward = -transform.basis.z.normalized()
 	$interaction_zone.global_transform.origin = global_transform.origin + forward * offset
 
-#func _physics_process(delta: float) -> void:
-#	# Add the gravity.
-#	if not is_on_floor():
-#		velocity += get_gravity() * delta
-
-#	#mouse movement
-#	# rotation.y -= mouse_delta.x * mouse_sensitivity
-#	# mouse_delta = Vector2.ZERO
-
-#	# Handle jump.
-#	if Input.is_action_just_pressed("jump") and is_on_floor():
-#		velocity.y = JUMP_VELOCITY
-
-#	#handle crouch
-#	if Input.is_action_pressed("crouch"):
-#		is_crouching = true
-#		speed = CROUCH_SPEED
-#		$CollisionShape3D.shape.height = normal_height * CROUCH_HEIGHT
-#	else:
-#		is_crouching = false
-#		speed = NORMAL_SPEED
-#		$CollisionShape3D.shape.height = normal_height
-
-
-
-#	# Get the input direction and handle the movement/deceleration.
-#	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-#	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-#	if input_dir != Vector2.ZERO:
-#			print("MOVING: ", input_dir)  # ADD THIS
-
-#	if direction:
-#		velocity.x = direction.x * speed
-#		velocity.z = direction.z * speed
-#	else:
-#		velocity.x = move_toward(velocity.x, 0, speed)
-#		velocity.z = move_toward(velocity.z, 0, speed)
-
-
-#	move_and_slide()
-
-#	#make the interaction zone stay infront of player
-#	var offset = 1.0 #offset of interaction zone to player
-#	var forward = -transform.basis.z.normalized()
-#	$interaction_zone.global_transform.origin = (
-#	global_transform.origin + forward * offset)
-
-
-# func _input(event: InputEvent) -> void:
-# 	if event is InputEventMouseMotion:
-# 		mouse_delta += event.relative
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -168,16 +154,36 @@ func _input(event):
 func _on_interaction_zone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("interactable"):
 		print("interactable object in range")
+	if body.is_in_group("pickable"):
+		if interact_prompt_label:
+			interact_prompt_label.text = "Pick up {press E}"
+			interact_prompt_label.visible = true
+		can_pickup = true
+		pickup_target = body
+	if body.is_in_group("defaceable"):
+		if interact_prompt_label:
+			interact_prompt_label.text = "cut the face off {press E}"
+			interact_prompt_label.visible = true
+		can_pickup = true
+		pickup_target = body
+	print("body entered")
 
 func _on_interaction_zone_body_exited(body: Node3D) -> void:
 	if body.is_in_group("interactable"):
 		print("interactable object exited range")
+	if body.is_in_group("pickable") or body.is_in_group("defaceable"):
+		if interact_prompt_label:
+			interact_prompt_label.text = ""
+			interact_prompt_label.visible = false
+		can_pickup = false
+		pickup_target = null
+	print("body exited")
 
 func _on_interaction_zone_area_entered(area: Area3D) -> void:
 	if area.is_in_group("danger_zone"):
 		print("Danger entered!")
 	if area.is_in_group("killable"):
-		if interact_prompt_label:
+		if interact_prompt_label and PICKABLES["Scalpel"] > 0:
 			interact_prompt_label.text = "Kill him {press E}"
 			interact_prompt_label.visible = true
 			can_kill = true

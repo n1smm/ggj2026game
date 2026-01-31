@@ -17,6 +17,7 @@ enum States {
 var state : States = States.Walking
 var target : Node3D
 var current_patrol_index = 0
+var is_dead = false
 
 # Base values for aggression scaling
 var mob_aggression_factor = 0.01
@@ -48,8 +49,12 @@ func _ready() -> void:
 	# Connect to GameManager if it exists
 	if GameManager:
 		GameManager.aggression_changed.connect(_on_aggression_changed)
+		GameManager.speed_up_mob.connect(_on_speed_up)
 		# Set initial values immediately
 		_on_aggression_changed(GameManager.get_aggression_factor())
+
+	
+	
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -104,8 +109,32 @@ func _on_aggression_changed(factor: float) -> void:
 	
 	# CRITICAL: Rebuild the vision shape for changes to take effect
 	rebuild_vision_cone()
+
+func _on_speed_up() -> void:
+	print("signal on speed change")
+	walkSpeed += 0.3	
+	runSpeed += 0.1
+	match state:
+		States.Walking:
+			follow_target_3d.Speed = walkSpeed
+		States.Pursuit:
+			follow_target_3d.Speed = runSpeed
+
+
+func die() -> void:
+	if is_dead:
+		return
+	is_dead = true
+	var dead_mob_scene = preload("res://dead_mob.tscn")
+	var dead_mob = dead_mob_scene.instantiate()
+	var pos = global_transform.origin
+	get_tree().current_scene.add_child(dead_mob)
+	dead_mob.global_transform.origin.x = pos.x
+	dead_mob.global_transform.origin.z = pos.z
+	dead_mob.global_transform.origin.y = 0.1
+	queue_free()
+
 	
-	print("Mob aggression - factor: %.2f, Distance: %.1f" % [factor, $SimpleVision3D.Distance])
 
 func rebuild_vision_cone() -> void:
 	# Rebuild the vision cone shape with updated parameters
