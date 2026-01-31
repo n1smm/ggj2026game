@@ -178,9 +178,9 @@ func _on_interaction_zone_area_entered(area: Area3D) -> void:
 		if interact_prompt_label:
 			interact_prompt_label.text = "open doors {press E}"
 			interact_prompt_label.visible = true
-			can_interact = true
-			interact_target = area.get_parent().toggle_door()
-			print("interactable area in range")
+		can_interact = true
+		interact_target = area.get_parent()
+		print("interactable area in range")
 	print("area entered")
 
 func _on_interaction_zone_area_exited(area: Area3D) -> void:
@@ -197,7 +197,7 @@ func _on_interaction_zone_area_exited(area: Area3D) -> void:
 		if interact_prompt_label:
 			interact_prompt_label.text = ""
 			interact_prompt_label.visible = false
-			can_interact = false
-			interact_target = null
+		can_interact = false
+		interact_target = null
 
 		print("area exited")
