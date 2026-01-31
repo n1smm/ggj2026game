@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://doubgh2jo7coc"]
+
+[ext_resource type="Script" uid="uid://bfn3xcp44v2u7" path="res://mob.gd" id="1_dy6sc"]
+
+[node name="Mob" type="CharacterBody3D" unique_id=524789304]
+script = ExtResource("1_dy6sc")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=915572007]
+
+[node name="DetectionZone" type="Area3D" parent="." unique_id=1741521448]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionZone" unique_id=1556772366]
