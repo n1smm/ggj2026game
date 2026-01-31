@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dc7ulrjpape5f"]
+
+[ext_resource type="ArrayMesh" uid="uid://n7dm3qxnbw21" path="res://Assets/models/prova/model.obj" id="1_noarx"]
+[ext_resource type="Shader" uid="uid://barr67i45fwv7" path="res://Assets/shaders/kuwahara_spatial.gdshader" id="2_a0tk4"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_r3fl7"]
+size = Vector2(6, 6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jka67"]
+render_priority = 0
+shader = ExtResource("2_a0tk4")
+shader_parameter/radius = 3
+
+[node name="Node3D" type="Node3D" unique_id=58610446]
+
+[node name="Model" type="MeshInstance3D" parent="." unique_id=1160736198]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4859877, 1.1920929e-07, 1.2748375)
+mesh = ExtResource("1_noarx")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=663061509]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.838001, 3.8460512, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D" unique_id=1922770960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+mesh = SubResource("QuadMesh_r3fl7")
+surface_material_override/0 = SubResource("ShaderMaterial_jka67")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2046544521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3703, 0, 0)
