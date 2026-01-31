@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://d0r6qtgcjsp82"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_meif2"]
+emission_enabled = true
+emission = Color(0.4573335, 0.6305971, 1, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qaibf"]
+material = SubResource("StandardMaterial3D_meif2")
+
+[node name="Light" type="Node3D" unique_id=1151682894]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1690573011]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qaibf")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=828596593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08765656, 0)
+light_energy = 8.0
+omni_range = 8.0
