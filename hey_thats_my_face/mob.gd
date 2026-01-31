@@ -1,28 +1,49 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+enum States {
+	Walking,
+	Pursuit
+}
+
+@export var walkSpeed : float = 2.0
+@export var runSpeed : float = 5.0
+
+@onready var follow_target_3d: FollowTarget3D = $FollowTarget3D
+@onready var random_target_3d: RandomTarget3D = $RandomTarget3D
+
+var state : States = States.Walking
+var target : Node3D
+
+func _ready() -> void:
+	ChangeState(States.Walking)
+	$SimpleVision3D.GetSight.connect(_on_simple_vision_3d_get_sight)
+	$SimpleVision3D.LostSight.connect(_on_simple_vision_3d_lost_sight)
+	$FollowTarget3D.navigation_finished.connect(_on_follow_target_3d_navigation_finished)
 
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+func ChangeState(newState : States) -> void:
+	state = newState
+	match state:
+		States.Walking:
+			follow_target_3d.ClearTarget()
+			follow_target_3d.Speed = walkSpeed
+			follow_target_3d.SetFixedTarget(random_target_3d.GetNextPoint())
+			target = null
+		States.Pursuit:
+			follow_target_3d.Speed = runSpeed
+			follow_target_3d.SetTarget(target)
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+func _on_follow_target_3d_navigation_finished() -> void:
+	follow_target_3d.SetFixedTarget(random_target_3d.GetNextPoint())
 
-	move_and_slide()
+func _on_simple_vision_3d_get_sight(body: Node3D) -> void:
+	target = body
+	ChangeState(States.Pursuit)
+
+func _on_simple_vision_3d_lost_sight() -> void:
+	ChangeState(States.Walking)

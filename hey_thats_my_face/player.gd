@@ -4,17 +4,21 @@ extends CharacterBody3D
 const NORMAL_SPEED = 5.0
 const CROUCH_SPEED = 2.5
 const JUMP_VELOCITY = 4.5
-const NORMAL_HEIGHT = 2.0
-const CROUCH_HEIGHT = 1.0
+const CROUCH_HEIGHT = 0.5
 
 var is_crouching = false
 var speed = CROUCH_SPEED if is_crouching else NORMAL_SPEED
+var normal_height = 0.0
 
 func _ready() -> void:
+	normal_height = $CollisionShape3D.shape.height
+
 	$interaction_zone.body_entered.connect(_on_interaction_zone_body_entered)
 	$interaction_zone.body_exited.connect(_on_interaction_zone_body_exited)
 	$interaction_zone.area_entered.connect(_on_interaction_zone_area_entered)
 	$interaction_zone.area_exited.connect(_on_interaction_zone_area_entered)
+
+	add_to_group("player")
 
 
 func _physics_process(delta: float) -> void:
@@ -30,11 +34,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("crouch"):
 		is_crouching = true
 		speed = CROUCH_SPEED
-		$CollisionShape3D.shape.height = CROUCH_HEIGHT
+		$CollisionShape3D.shape.height = normal_height * CROUCH_HEIGHT
 	else:
 		is_crouching = false
 		speed = NORMAL_SPEED
-		$CollisionShape3D.shape.height = NORMAL_HEIGHT
+		$CollisionShape3D.shape.height = normal_height
 
 
 
@@ -60,20 +64,20 @@ func _physics_process(delta: float) -> void:
 
 
 # signal handlers
-func _on_interaction_zone_body_entered(body):
+func _on_interaction_zone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("interactable"):
 		print("interactable object in range")
 
-func _on_interaction_zone_body_exited(body):
+func _on_interaction_zone_body_exited(body: Node3D) -> void:
 	if body.is_in_group("interactable"):
 		print("interactable object exited range")
 
-func _on_interaction_zone_area_entered(area):
+func _on_interaction_zone_area_entered(area: Area3D) -> void:
 	if area.is_in_group("danger_zone"):
 		print("Danger entered!")
 	print("area entered")
 
-func _on_interaction_zone_area_exited(area):
+func _on_interaction_zone_area_exited(area: Area3D) -> void:
 	if area.is_in_group("danger_zone"):
 		print("Escaped danger")
 	print("area exited")

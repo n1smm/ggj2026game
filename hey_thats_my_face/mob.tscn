@@ -1,13 +1,33 @@
 [gd_scene format=3 uid="uid://doubgh2jo7coc"]
 
 [ext_resource type="Script" uid="uid://bfn3xcp44v2u7" path="res://mob.gd" id="1_dy6sc"]
+[ext_resource type="Script" uid="uid://bup57lptyufah" path="res://addons/3dEnemyToolkit/SimpleVision3D.gd" id="2_p11y5"]
+[ext_resource type="Script" uid="uid://bu2qu110hke5k" path="res://addons/3dEnemyToolkit/FollowTarget.gd" id="3_s5nov"]
+[ext_resource type="Script" uid="uid://c75pam6qjbcpr" path="res://addons/3dEnemyToolkit/RandomTarget3D.gd" id="4_b3mxk"]
+[ext_resource type="Texture2D" uid="uid://cc7fsgwjdvdpx" path="res://Assets/models/PlaceholderGGJ.png" id="5_s5nov"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b3mxk"]
+radius = 0.6826172
+height = 5.1029053
 
 [node name="Mob" type="CharacterBody3D" unique_id=524789304]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 script = ExtResource("1_dy6sc")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=915572007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049494505, -0.06620312, 0.05091381)
+shape = SubResource("CapsuleShape3D_b3mxk")
 
-[node name="DetectionZone" type="Area3D" parent="." unique_id=1741521448]
+[node name="SimpleVision3D" type="Node3D" parent="." unique_id=1660342861]
+script = ExtResource("2_p11y5")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionZone" unique_id=1556772366]
+[node name="FollowTarget3D" type="NavigationAgent3D" parent="." unique_id=941098976]
+script = ExtResource("3_s5nov")
+
+[node name="RandomTarget3D" type="Node3D" parent="." unique_id=439741599]
+script = ExtResource("4_b3mxk")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1288315881]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+texture = ExtResource("5_s5nov")
