@@ -7,3 +7,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MenuBox" type="VBoxContainer" parent="." unique_id=376007306]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayButton" type="Button" parent="MenuBox" unique_id=826421646]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="MenuBox" unique_id=471132167]
+layout_mode = 2
