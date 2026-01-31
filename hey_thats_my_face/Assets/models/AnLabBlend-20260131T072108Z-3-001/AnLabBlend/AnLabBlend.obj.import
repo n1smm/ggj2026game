@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dvcmt6gmg1gjg"
+path="res://.godot/imported/AnLabBlend.obj-589c8e62e2e8f95c86c75f68875d2f50.mesh"
+
+[deps]
+
+files=["res://.godot/imported/AnLabBlend.obj-589c8e62e2e8f95c86c75f68875d2f50.mesh"]
+
+source_file="res://Assets/models/AnLabBlend-20260131T072108Z-3-001/AnLabBlend/AnLabBlend.obj"
+dest_files=["res://.godot/imported/AnLabBlend.obj-589c8e62e2e8f95c86c75f68875d2f50.mesh", "res://.godot/imported/AnLabBlend.obj-589c8e62e2e8f95c86c75f68875d2f50.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
