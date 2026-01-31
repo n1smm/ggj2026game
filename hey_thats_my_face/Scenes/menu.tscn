@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d0ouwjbktdggd"]
 
 [node name="Menu" type="Control" unique_id=106846548]
+custom_minimum_size = Vector2(1, 1)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,11 +11,19 @@ grow_vertical = 2
 
 [node name="MenuBox" type="VBoxContainer" parent="." unique_id=376007306]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 262.0
+offset_top = 418.0
+offset_right = 562.0
+offset_bottom = 518.0
+
+[node name="Label" type="Label" parent="MenuBox" unique_id=288982962]
+layout_mode = 2
+text = "Stolen Face"
 
 [node name="PlayButton" type="Button" parent="MenuBox" unique_id=826421646]
 layout_mode = 2
+text = "Play"
 
 [node name="QuitButton" type="Button" parent="MenuBox" unique_id=471132167]
 layout_mode = 2
+text = "Quit"
