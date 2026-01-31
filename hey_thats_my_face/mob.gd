@@ -23,10 +23,18 @@ func _ready() -> void:
 	$SimpleVision3D.LostSight.connect(_on_simple_vision_3d_lost_sight)
 	$FollowTarget3D.navigation_finished.connect(_on_follow_target_3d_navigation_finished)
 
+	$InteractionZone.add_to_group("danger_zone")
+	$KillZone.add_to_group("killable")
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+
+	var offset = 0.2
+	var forward = -transform.basis.z.normalized()
+	var back = transform.basis.z.normalized()
+	$InteractionZone.global_transform.origin = global_transform.origin + forward * offset
+	$KillZone.global_transform.origin = global_transform.origin + back * offset
 
 func ChangeState(newState : States) -> void:
 	state = newState

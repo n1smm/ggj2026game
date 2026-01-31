@@ -3,6 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://psyddhrxhb3x" path="res://player.tscn" id="1_ia1lp"]
 [ext_resource type="PackedScene" uid="uid://doubgh2jo7coc" path="res://mob.tscn" id="2_sasra"]
 
+[sub_resource type="SystemFont" id="SystemFont_ia1lp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sasra"]
+font = SubResource("SystemFont_ia1lp")
+font_size = 50
+font_color = Color(1, 0, 0, 1)
+
 [sub_resource type="Sky" id="Sky_coq8p"]
 
 [sub_resource type="Environment" id="Environment_2nij2"]
@@ -21,6 +28,15 @@ agent_height = 2.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_8pr8v"]
 
 [node name="TestScene" type="Node3D" unique_id=2033671578]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=667232596]
+
+[node name="InteractionPrompt" type="Label" parent="CanvasLayer" unique_id=56152820]
+offset_left = 367.0
+offset_top = 292.0
+offset_right = 757.0
+offset_bottom = 385.0
+label_settings = SubResource("LabelSettings_sasra")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1056774950]
 environment = SubResource("Environment_2nij2")

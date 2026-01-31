@@ -10,9 +10,12 @@
 radius = 0.6826172
 height = 5.1029053
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_s5nov"]
+
 [node name="Mob" type="CharacterBody3D" unique_id=524789304]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 script = ExtResource("1_dy6sc")
+runSpeed = 3.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=915572007]
@@ -21,7 +24,7 @@ shape = SubResource("CapsuleShape3D_b3mxk")
 
 [node name="SimpleVision3D" type="Node3D" parent="." unique_id=1660342861]
 script = ExtResource("2_p11y5")
-Distance = 10.0
+Distance = 5.0
 BaseWidth = 1.0
 EndWidth = 5.0
 BaseHeight = 2.0
@@ -30,12 +33,25 @@ BaseConeSize = 2.0
 
 [node name="FollowTarget3D" type="NavigationAgent3D" parent="." unique_id=941098976]
 script = ExtResource("3_s5nov")
-TurnSpeed = 0.01
+TurnSpeed = 0.05
+ReachTargetMinDistance = 15.0
 
 [node name="RandomTarget3D" type="Node3D" parent="." unique_id=439741599]
 script = ExtResource("4_b3mxk")
 MaxAngleRange = -60
 MinAngleRange = 60
+
+[node name="InteractionZone" type="Area3D" parent="." unique_id=951684406]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionZone" unique_id=1694950116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_s5nov")
+
+[node name="KillZone" type="Area3D" parent="." unique_id=1111875476]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillZone" unique_id=1814146608]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_s5nov")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1288315881]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)

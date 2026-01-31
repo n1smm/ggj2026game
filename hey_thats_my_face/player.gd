@@ -1,16 +1,18 @@
 extends CharacterBody3D
 
-
 const NORMAL_SPEED = 5.0
 const CROUCH_SPEED = 2.5
 const JUMP_VELOCITY = 4.5
 const CROUCH_HEIGHT = 0.5
 
+@onready var kill_prompt_label: Label = get_node_or_null("../CanvasLayer/InteractionPrompt")
 var is_crouching = false
 var speed = CROUCH_SPEED if is_crouching else NORMAL_SPEED
 var normal_height = 0.0
 var mouse_sensitivity = 0.003
 var mouse_delta = Vector2.ZERO
+var can_kill := false
+var kill_target: Node3D = null
 
 func _ready() -> void:
 	normal_height = $CollisionShape3D.shape.height
@@ -18,7 +20,7 @@ func _ready() -> void:
 	$interaction_zone.body_entered.connect(_on_interaction_zone_body_entered)
 	$interaction_zone.body_exited.connect(_on_interaction_zone_body_exited)
 	$interaction_zone.area_entered.connect(_on_interaction_zone_area_entered)
-	$interaction_zone.area_exited.connect(_on_interaction_zone_area_entered)
+	$interaction_zone.area_exited.connect(_on_interaction_zone_area_exited)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 	add_to_group("player")
@@ -26,12 +28,21 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	# Check mouse mode every frame
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
-		print("WARNING: Mouse mode changed to: ", Input.get_mouse_mode())
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	# Add the gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+
+	#handle interact
+	if Input.is_action_pressed("interact"):
+		if can_kill and kill_target:
+			kill_target.queue_free()
+			if kill_prompt_label:
+				kill_prompt_label.text = ""
+				kill_prompt_label.visible = false
+			can_kill = false
+			kill_target = null
 
 	# Handle jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -127,11 +138,8 @@ func _physics_process(delta: float) -> void:
 # 		mouse_delta += event.relative
 
 func _input(event):
-	print("_input called with: ", event.get_class())
 	if event is InputEventMouseMotion:
-		print("MOUSE MOTION - captured mode: ", Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED)
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			print("ROTATING by: ", event.relative)
 			rotate_y(-event.relative.x * mouse_sensitivity)
 
 
@@ -148,9 +156,23 @@ func _on_interaction_zone_body_exited(body: Node3D) -> void:
 func _on_interaction_zone_area_entered(area: Area3D) -> void:
 	if area.is_in_group("danger_zone"):
 		print("Danger entered!")
+	if area.is_in_group("killable"):
+		if kill_prompt_label:
+			kill_prompt_label.text = "Kill him {press E}"
+			kill_prompt_label.visible = true
+			can_kill = true
+			kill_target = area.get_parent()
+			print("KILL HIM!")
 	print("area entered")
 
 func _on_interaction_zone_area_exited(area: Area3D) -> void:
 	if area.is_in_group("danger_zone"):
 		print("Escaped danger")
+	if area.is_in_group("killable"):
+		if kill_prompt_label:
+			kill_prompt_label.text = ""
+			kill_prompt_label.visible = false
+		can_kill = false
+		kill_target = null
+		print("cant kill him anymore")
 	print("area exited")
