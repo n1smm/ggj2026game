@@ -50,8 +50,6 @@ func _physics_process(delta: float) -> void:
 			if interact_prompt_label:
 				interact_prompt_label.text = ""
 				interact_prompt_label.visible = false
-			can_interact = false
-			interact_target = null
 
 
 
