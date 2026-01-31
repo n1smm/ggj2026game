@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dbg0x6mkt7vrq"]
 
 [ext_resource type="PackedScene" uid="uid://psyddhrxhb3x" path="res://player.tscn" id="1_ia1lp"]
+[ext_resource type="Script" uid="uid://dvfqv64w2qgi1" path="res://test_scene.gd" id="1_sasra"]
 [ext_resource type="PackedScene" uid="uid://doubgh2jo7coc" path="res://mob.tscn" id="2_sasra"]
 
 [sub_resource type="SystemFont" id="SystemFont_ia1lp"]
@@ -8,6 +9,13 @@
 [sub_resource type="LabelSettings" id="LabelSettings_sasra"]
 font = SubResource("SystemFont_ia1lp")
 font_size = 50
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_sasra"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_coq8p"]
+font = SubResource("SystemFont_sasra")
+font_size = 30
 font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="Sky" id="Sky_coq8p"]
@@ -28,6 +36,7 @@ agent_height = 2.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_8pr8v"]
 
 [node name="TestScene" type="Node3D" unique_id=2033671578]
+script = ExtResource("1_sasra")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=667232596]
 
@@ -37,6 +46,11 @@ offset_top = 292.0
 offset_right = 757.0
 offset_bottom = 385.0
 label_settings = SubResource("LabelSettings_sasra")
+
+[node name="Time" type="Label" parent="CanvasLayer" unique_id=244893554]
+offset_right = 189.0
+offset_bottom = 56.0
+label_settings = SubResource("LabelSettings_coq8p")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1056774950]
 environment = SubResource("Environment_2nij2")
@@ -60,17 +74,17 @@ transform = Transform3D(0.83867055, 0.35008723, -0.4172177, 0, 0.76604444, 0.642
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=2147031295 instance=ExtResource("1_ia1lp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Mob1" parent="." unique_id=524789304 node_paths=PackedStringArray("patrol_points") instance=ExtResource("2_sasra")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 2, 1, 2)
 runSpeed = 4.0
 patrol_points = [NodePath("../Marker3D"), NodePath("../Marker3D2"), NodePath("../Marker3D3")]
 
-[node name="Mob2" parent="." unique_id=1322544978 node_paths=PackedStringArray("patrol_points") instance=ExtResource("2_sasra")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2, 1, -2)
-walkSpeed = 2.0
-patrol_points = [NodePath("../Marker3D4"), NodePath("../Marker3D5"), NodePath("../Marker3D6")]
+[node name="Mob2" parent="." unique_id=406591318 node_paths=PackedStringArray("patrol_points") instance=ExtResource("2_sasra")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.1679568, 1.2672925, -0.5685091)
+runSpeed = 4.0
+patrol_points = [NodePath("../Marker3D"), NodePath("../Marker3D2"), NodePath("../Marker3D3")]
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=539881679]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 1, 1.2)

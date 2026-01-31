@@ -6,6 +6,7 @@ const JUMP_VELOCITY = 4.5
 const CROUCH_HEIGHT = 0.5
 
 @onready var interact_prompt_label: Label = get_node_or_null("../CanvasLayer/InteractionPrompt")
+@onready var time_label: Label = get_node_or_null("../CanvasLayer/Time")
 var is_crouching = false
 var speed = CROUCH_SPEED if is_crouching else NORMAL_SPEED
 var normal_height = 0.0
@@ -15,6 +16,10 @@ var can_kill := false
 var can_interact := false
 var kill_target: Node3D = null
 var interact_target: StaticBody3D = null
+
+var time_left := 0.0
+var aggression := 0.001
+
 
 func _ready() -> void:
 	normal_height = $CollisionShape3D.shape.height
@@ -26,8 +31,14 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 	add_to_group("player")
+	if GameManager:
+		GameManager.aggression_changed.connect(_on_aggression_changed)
+
+
 
 func _physics_process(delta: float) -> void:
+	time_label.text = str(aggression)
+
 	# Check mouse mode every frame
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -199,3 +210,6 @@ func _on_interaction_zone_area_exited(area: Area3D) -> void:
 		interact_target = null
 
 		print("area exited")
+
+func _on_aggression_changed(factor: float) -> void:
+	aggression = factor

@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://bup57lptyufah" path="res://addons/3dEnemyToolkit/SimpleVision3D.gd" id="2_p11y5"]
 [ext_resource type="Script" uid="uid://bu2qu110hke5k" path="res://addons/3dEnemyToolkit/FollowTarget.gd" id="3_s5nov"]
 [ext_resource type="Script" uid="uid://c75pam6qjbcpr" path="res://addons/3dEnemyToolkit/RandomTarget3D.gd" id="4_b3mxk"]
-[ext_resource type="Texture2D" uid="uid://cc7fsgwjdvdpx" path="res://Assets/models/PlaceholderGGJ.png" id="5_s5nov"]
+[ext_resource type="Texture2D" uid="uid://bfada52xmc5fo" path="res://Assets/models/nurse.PNG" id="5_s5nov"]
+[ext_resource type="Texture2D" uid="uid://batm2wqfwqod1" path="res://Assets/models/nurse_back.png" id="6_b3mxk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b3mxk"]
 radius = 0.6826172
@@ -24,9 +25,9 @@ shape = SubResource("CapsuleShape3D_b3mxk")
 
 [node name="SimpleVision3D" type="Node3D" parent="." unique_id=1660342861]
 script = ExtResource("2_p11y5")
-Distance = 5.0
+Distance = 20.0
 BaseWidth = 1.0
-EndWidth = 5.0
+EndWidth = 10.0
 BaseHeight = 2.0
 EndHeight = 10.0
 BaseConeSize = 2.0
@@ -54,5 +55,9 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("BoxShape3D_s5nov")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1288315881]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(-0.2, 0, -1.7484556e-08, 0, 0.2, 0, 1.7484556e-08, 0, -0.2, 0, 0, 0)
 texture = ExtResource("5_s5nov")
+
+[node name="Sprite3DBack" type="Sprite3D" parent="." unique_id=1371451405]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+texture = ExtResource("6_b3mxk")

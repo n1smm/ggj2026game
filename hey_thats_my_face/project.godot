@@ -19,6 +19,10 @@ run/main_scene="uid://dbg0x6mkt7vrq"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*uid://c7rseqqg3ysbu"
+
 [global_group]
 
 interaction_zone="interaction_zone"
