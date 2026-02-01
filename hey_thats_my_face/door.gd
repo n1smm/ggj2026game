@@ -9,6 +9,7 @@ var _current_angle: float = 0.0
 var _target_angle: float = 0.0
 var _player_in_range: bool = false
 var _can_open_special: bool = false
+var _mobs_in_range: int = 0
 
 func _ready():
 	_current_angle = rotation_degrees.y
@@ -26,10 +27,6 @@ func _process(delta):
 		_current_angle = lerp(_current_angle, _target_angle, open_speed * delta)
 		rotation_degrees.y = _current_angle
 
-# func _unhandled_input(event):
-# 	if _player_in_range and Input.is_action_just_pressed("interact"):
-# 		toggle_door()
-
 func open_door():
 	if not special_door or _can_open_special:
 		is_open = true
@@ -45,12 +42,21 @@ func toggle_door():
 	else:
 		open_door()
 
-# func _on_area_3d_body_entered(body):
-# 	if body.is_in_group("player"):
-# 		_player_in_range = true
-# 		print("Player vicino alla porta")
+func _on_area_3d_body_entered(body):
+	if body.is_in_group("player"):
+		_player_in_range = true
+	
+	if body.is_in_group("mob"):
+		_mobs_in_range += 1
+		if _mobs_in_range > 0:
+			open_door()
 
-# func _on_area_3d_body_exited(body):
-# 	if body.is_in_group("player"):
-# 		_player_in_range = false
-# 		print("Player lontano dalla porta")
+func _on_area_3d_body_exited(body):
+	if body.is_in_group("player"):
+		_player_in_range = false
+	
+	if body.is_in_group("mob"):
+		_mobs_in_range -= 1
+		if _mobs_in_range <= 0:
+			_mobs_in_range = 0
+			close_door()

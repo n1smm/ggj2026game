@@ -47,6 +47,9 @@ func _ready() -> void:
 	$InteractionZone.body_entered.connect(_on_interaction_zone_body_entered)
 	$KillZone.add_to_group("killable")
 	
+	# Add mob to group so doors can detect it
+	add_to_group("mob")
+	
 	# Connect to GameManager if it exists
 	if GameManager:
 		GameManager.aggression_changed.connect(_on_aggression_changed)
