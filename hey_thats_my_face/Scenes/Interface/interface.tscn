@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://vs0hfbx3mtb3"]
 
-[ext_resource type="Script" path="res://Scripts/interface.gd" id="1_cpnfq"]
+[ext_resource type="Script" uid="uid://bh36fxh61ctjy" path="res://Scripts/interface.gd" id="1_cpnfq"]
 [ext_resource type="Texture2D" uid="uid://b84ruc6hs50sj" path="res://Assets/Faces/noface.PNG" id="1_v13jd"]
 [ext_resource type="Texture2D" uid="uid://cnayf6o68gxc1" path="res://Assets/models/weapon.PNG" id="2_cpnfq"]
 [ext_resource type="Texture2D" uid="uid://c8kt86pqd34pb" path="res://Assets/Faces/withface.PNG" id="3_ivxwx"]

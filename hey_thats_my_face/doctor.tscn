@@ -1,11 +1,10 @@
-[gd_scene format=3 uid="uid://doubgh2jo7coc"]
+[gd_scene format=3 uid="uid://bkaae3bgs8nfu"]
 
-[ext_resource type="Script" uid="uid://bfn3xcp44v2u7" path="res://mob.gd" id="1_dy6sc"]
-[ext_resource type="Script" uid="uid://bup57lptyufah" path="res://addons/3dEnemyToolkit/SimpleVision3D.gd" id="2_p11y5"]
-[ext_resource type="Script" uid="uid://bu2qu110hke5k" path="res://addons/3dEnemyToolkit/FollowTarget.gd" id="3_s5nov"]
-[ext_resource type="Script" uid="uid://c75pam6qjbcpr" path="res://addons/3dEnemyToolkit/RandomTarget3D.gd" id="4_b3mxk"]
-[ext_resource type="Texture2D" uid="uid://bfada52xmc5fo" path="res://Assets/models/nurse.PNG" id="5_s5nov"]
-[ext_resource type="Texture2D" uid="uid://batm2wqfwqod1" path="res://Assets/models/nurse_back.png" id="6_b3mxk"]
+[ext_resource type="Script" uid="uid://vac7odo0gueq" path="res://doctor.gd" id="1_0f27e"]
+[ext_resource type="Script" uid="uid://bup57lptyufah" path="res://addons/3dEnemyToolkit/SimpleVision3D.gd" id="2_buw52"]
+[ext_resource type="Script" uid="uid://bu2qu110hke5k" path="res://addons/3dEnemyToolkit/FollowTarget.gd" id="3_4jg85"]
+[ext_resource type="Script" uid="uid://c75pam6qjbcpr" path="res://addons/3dEnemyToolkit/RandomTarget3D.gd" id="4_4py2l"]
+[ext_resource type="Texture2D" uid="uid://d0ktkp58j1xhw" path="res://Assets/models/doctor.PNG" id="5_pr7g1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b3mxk"]
 radius = 0.6826172
@@ -13,10 +12,9 @@ height = 5.1029053
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s5nov"]
 
-[node name="Mob" type="CharacterBody3D" unique_id=524789304]
+[node name="Doctor" type="CharacterBody3D" unique_id=524789304]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.5, 0)
-script = ExtResource("1_dy6sc")
-runSpeed = 3.0
+script = ExtResource("1_0f27e")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=915572007]
@@ -24,7 +22,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049494505, -0.06620312, 0.0
 shape = SubResource("CapsuleShape3D_b3mxk")
 
 [node name="SimpleVision3D" type="Node3D" parent="." unique_id=1660342861]
-script = ExtResource("2_p11y5")
+script = ExtResource("2_buw52")
 Distance = 30.0
 BaseWidth = 1.0
 EndWidth = 10.0
@@ -33,12 +31,12 @@ EndHeight = 10.0
 BaseConeSize = 2.0
 
 [node name="FollowTarget3D" type="NavigationAgent3D" parent="." unique_id=941098976]
-script = ExtResource("3_s5nov")
+script = ExtResource("3_4jg85")
 TurnSpeed = 0.05
 ReachTargetMinDistance = 15.0
 
 [node name="RandomTarget3D" type="Node3D" parent="." unique_id=439741599]
-script = ExtResource("4_b3mxk")
+script = ExtResource("4_4py2l")
 MaxAngleRange = -60
 MinAngleRange = 60
 
@@ -56,8 +54,4 @@ shape = SubResource("BoxShape3D_s5nov")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1288315881]
 transform = Transform3D(-0.2, 0, -1.7484556e-08, 0, 0.2, 0, 1.7484556e-08, 0, -0.2, 0, 0, 0)
-texture = ExtResource("5_s5nov")
-
-[node name="Sprite3DBack" type="Sprite3D" parent="." unique_id=1371451405]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-texture = ExtResource("6_b3mxk")
+texture = ExtResource("5_pr7g1")

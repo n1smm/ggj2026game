@@ -3,9 +3,12 @@ extends Node
 signal aggression_changed(factor: float)
 signal speed_up_mob()
 signal mob_killed()
+signal doctor_mask_gained()
+signal mask_progress_changed(progress: int)
 
 @export var game_duration: float = 20.0
 @export var idle = false
+@export var aggression_factor_w_doctor_face: float = 0.3
 
 var time_left: float = 0.1
 var aggression_factor: float = 0.001  # Start at almost 0.0 (no aggression), goes to 1.0 (max)
@@ -36,6 +39,10 @@ func stop_timer() -> void:
 	aggression_factor = 1.0
 	pass
 
+func stop_timer_doctor() -> void:
+	time_left = game_duration
+	idle = true
+	aggression_factor = aggression_factor_w_doctor_face
 
 func get_aggression_factor() -> float:
 	return aggression_factor

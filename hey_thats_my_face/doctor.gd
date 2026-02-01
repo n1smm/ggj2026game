@@ -37,8 +37,6 @@ func _ready() -> void:
 	base_run_speed = runSpeed
 
 	ChangeState(States.Walking)
-	$Sprite3D.double_sided = false
-	$Sprite3DBack.double_sided = false
 	$SimpleVision3D.GetSight.connect(_on_simple_vision_3d_get_sight)
 	$SimpleVision3D.LostSight.connect(_on_simple_vision_3d_lost_sight)
 	$FollowTarget3D.navigation_finished.connect(_on_follow_target_3d_navigation_finished)
@@ -149,6 +147,7 @@ func _on_interaction_zone_body_entered(body: Node3D) -> void:
 		await get_tree().create_timer(2.0).timeout
 		get_tree().paused = false
 		get_tree().reload_current_scene()
+"""comment """
 	
 
 # func rebuild_vision_cone() -> void:
