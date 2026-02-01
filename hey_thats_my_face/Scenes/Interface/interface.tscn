@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://vs0hfbx3mtb3"]
+
+[ext_resource type="Script" uid="uid://bh36fxh61ctjy" path="res://Scripts/interface.gd" id="1_cpnfq"]
+[ext_resource type="Texture2D" uid="uid://b84ruc6hs50sj" path="res://Assets/Faces/noface.PNG" id="1_v13jd"]
+[ext_resource type="Texture2D" uid="uid://cnayf6o68gxc1" path="res://Assets/models/weapon.PNG" id="2_cpnfq"]
+[ext_resource type="Texture2D" uid="uid://c8kt86pqd34pb" path="res://Assets/Faces/withface.PNG" id="3_ivxwx"]
+[ext_resource type="Texture2D" uid="uid://xwwectsmyyfi" path="res://Assets/Faces/1.PNG" id="4_marse"]
+[ext_resource type="Texture2D" uid="uid://ddtn4dugfkfn8" path="res://Assets/Faces/2.PNG" id="5_3r5a1"]
+[ext_resource type="Texture2D" uid="uid://21tmhshkn0ba" path="res://Assets/Faces/3.PNG" id="6_61e0q"]
+[ext_resource type="Texture2D" uid="uid://cv8roh12p6xgu" path="res://Assets/Faces/4.PNG" id="7_w4uu1"]
+[ext_resource type="Texture2D" uid="uid://jgs2b33clktl" path="res://Assets/Faces/good.PNG" id="8_tvokg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v13jd"]
+
+[node name="Interface" type="Control" unique_id=398585456]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=873586684]
+
+[node name="inventory" type="Control" parent="CanvasLayer" unique_id=275696836]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -648.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/inventory" unique_id=669721503]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_v13jd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/inventory/Panel" unique_id=1986060305]
+layout_mode = 0
+offset_right = 1090.0
+offset_bottom = 150.0
+theme_override_constants/separation = 800
+alignment = 1
+script = ExtResource("1_cpnfq")
+icone_slot_1 = Array[Texture2D]([ExtResource("1_v13jd"), ExtResource("3_ivxwx"), ExtResource("4_marse"), ExtResource("5_3r5a1"), ExtResource("6_61e0q"), ExtResource("7_w4uu1"), ExtResource("8_tvokg")])
+
+[node name="Face" type="TextureRect" parent="CanvasLayer/inventory/Panel/HBoxContainer" unique_id=356421245]
+custom_minimum_size = Vector2(220, 220)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("1_v13jd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Weapon" type="TextureRect" parent="CanvasLayer/inventory/Panel/HBoxContainer" unique_id=1123237962]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("2_cpnfq")
+expand_mode = 1
+stretch_mode = 5
