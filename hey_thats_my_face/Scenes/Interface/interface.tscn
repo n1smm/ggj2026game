@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://vs0hfbx3mtb3"]
 
-[ext_resource type="Script" uid="uid://bh36fxh61ctjy" path="res://Scripts/interface.gd" id="1_cpnfq"]
+[ext_resource type="Script" path="res://Scripts/interface.gd" id="1_cpnfq"]
 [ext_resource type="Texture2D" uid="uid://b84ruc6hs50sj" path="res://Assets/Faces/noface.PNG" id="1_v13jd"]
 [ext_resource type="Texture2D" uid="uid://cnayf6o68gxc1" path="res://Assets/models/weapon.PNG" id="2_cpnfq"]
 [ext_resource type="Texture2D" uid="uid://c8kt86pqd34pb" path="res://Assets/Faces/withface.PNG" id="3_ivxwx"]
@@ -11,6 +11,20 @@
 [ext_resource type="Texture2D" uid="uid://jgs2b33clktl" path="res://Assets/Faces/good.PNG" id="8_tvokg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v13jd"]
+
+[sub_resource type="SystemFont" id="SystemFont_ia1lp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ivxwx"]
+font = SubResource("SystemFont_ia1lp")
+font_size = 50
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_sasra"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_marse"]
+font = SubResource("SystemFont_sasra")
+font_size = 30
+font_color = Color(1, 0, 0, 1)
 
 [node name="Interface" type="Control" unique_id=398585456]
 layout_mode = 3
@@ -68,3 +82,15 @@ layout_mode = 2
 texture = ExtResource("2_cpnfq")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="InteractionPrompt" type="Label" parent="CanvasLayer" unique_id=1132051538]
+offset_left = 367.0
+offset_top = 292.0
+offset_right = 757.0
+offset_bottom = 385.0
+label_settings = SubResource("LabelSettings_ivxwx")
+
+[node name="Time" type="Label" parent="CanvasLayer" unique_id=42480702]
+offset_right = 189.0
+offset_bottom = 56.0
+label_settings = SubResource("LabelSettings_marse")
