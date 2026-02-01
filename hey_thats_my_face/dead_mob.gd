@@ -1,5 +1,6 @@
 extends StaticBody3D
 
+var defaced = false
 
 func _ready() -> void:
 	add_to_group("defaceable")
@@ -13,6 +14,8 @@ func _process(delta: float) -> void:
 
 
 func handle_face():
-	$FaceOn.visible = false
-	$FaceOff.visible = true
+	if not defaced:
+		defaced = true
+		$FaceOn.visible = false
+		$FaceOff.visible = true
 	
