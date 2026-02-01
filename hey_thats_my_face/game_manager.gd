@@ -5,6 +5,7 @@ signal speed_up_mob()
 signal mob_killed()
 signal doctor_mask_gained()
 signal mask_progress_changed(progress: int)
+signal scalpel_durability_change(progress: int)
 
 @export var game_duration: float = 20.0
 @export var idle = false

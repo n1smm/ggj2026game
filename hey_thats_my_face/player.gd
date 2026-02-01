@@ -75,6 +75,7 @@ func _physics_process(delta: float) -> void:
 				PICKABLES["Scalpel"] -= scalpel_hit_loss_durability
 				if GameManager:
 					GameManager.emit_signal("speed_up_mob")
+					GameManager.emit_signal("scalpel_durability_change", PICKABLES["Scalpel"])
 			if killed_name == "Doctor":
 				PICKABLES["Doctor"] = true
 				if GameManager:
@@ -95,12 +96,15 @@ func _physics_process(delta: float) -> void:
 
 			if pickup_target.has_method("handle_face"):
 				PICKABLES["Mask"] = MAX_MASK_TRANSITIONS
-				pickup_target.handle_face()
-				GameManager.start_timer()
+				if not pickup_target.defaced:
+					pickup_target.handle_face()
+					GameManager.start_timer()
 				print("harvested face/mask")
 			elif pickup_target.name == "Scalpel":
 				PICKABLES["Scalpel"] = scalpel_max_durability
 				pickup_target.queue_free()
+				if GameManager:
+					GameManager.emit_signal("scalpel_durability_change", PICKABLES["Scalpel"])
 				print("scalpel")
 			elif pickup_target.name == "Doctor":
 				PICKABLES["Doctor"] = true
@@ -236,6 +240,9 @@ func _on_aggression_changed(factor: float) -> void:
 		PICKABLES["Mask"] = int(mask_transition)
 		if GameManager:
 			GameManager.emit_signal("mask_progress_changed", mask_transition)
+	elif factor >= 0.99:
+		if GameManager:
+			GameManager.emit_signal("mask_progress_changed", -1)
 
 	if PICKABLES["Doctor"]:
 		if GameManager:
