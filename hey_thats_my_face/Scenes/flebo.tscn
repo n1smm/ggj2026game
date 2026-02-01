@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dbxmcdc2153c8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4dr3g"]
+size = Vector3(0.5, 2, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4dr3g"]
+size = Vector3(0.5, 2, 0.5)
+
+[node name="Flebo" type="Node3D" unique_id=386931341]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1816155128]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1373599141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_4dr3g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=954154255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_4dr3g")
