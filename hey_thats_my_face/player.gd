@@ -226,6 +226,6 @@ func _on_aggression_changed(factor: float) -> void:
 	if PICKABLES["Mask"] != 0:
 		var mask_transition = int(MAX_MASK_TRANSITIONS - ceil(factor * MAX_MASK_TRANSITIONS))
 		print("mask transition: ", mask_transition)
-		PICKABLES["Mask"] = mask_transition
+		PICKABLES["Mask"] = int(mask_transition)
 
 		
