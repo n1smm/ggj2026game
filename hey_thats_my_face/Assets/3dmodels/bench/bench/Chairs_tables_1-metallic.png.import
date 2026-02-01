@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0ktkp58j1xhw"
-path.s3tc="res://.godot/imported/doctor.PNG-b085d18b520f3ad38d63525e0ab88650.s3tc.ctex"
+uid="uid://dflhu1j1jrysr"
+path="res://.godot/imported/Chairs_tables_1-metallic.png-eb299adf469c10f1fe91da6f2d7a4c86.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/models/doctor.PNG"
-dest_files=["res://.godot/imported/doctor.PNG-b085d18b520f3ad38d63525e0ab88650.s3tc.ctex"]
+source_file="res://Assets/3dmodels/bench/bench/Chairs_tables_1-metallic.png"
+dest_files=["res://.godot/imported/Chairs_tables_1-metallic.png-eb299adf469c10f1fe91da6f2d7a4c86.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -24,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -38,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
