@@ -8,7 +8,7 @@
 size = Vector3(3.3251343, 1.6375732, 0.6265259)
 
 [node name="DeadMob" type="StaticBody3D" unique_id=1975194197]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.2, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.2, 0)
 script = ExtResource("1_bsbqc")
 
 [node name="FaceOn" type="Sprite3D" parent="." unique_id=734877324]

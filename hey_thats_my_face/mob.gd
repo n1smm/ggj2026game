@@ -44,6 +44,7 @@ func _ready() -> void:
 	$FollowTarget3D.navigation_finished.connect(_on_follow_target_3d_navigation_finished)
 
 	$InteractionZone.add_to_group("danger_zone")
+	$InteractionZone.body_entered.connect(_on_interaction_zone_body_entered)
 	$KillZone.add_to_group("killable")
 	
 	# Connect to GameManager if it exists
@@ -67,6 +68,7 @@ func _physics_process(delta: float) -> void:
 	$KillZone.global_transform.origin = global_transform.origin + back * offset
 
 func ChangeState(newState : States) -> void:
+	print("Changing state from ", States.keys()[state], " to ", States.keys()[newState])
 	state = newState
 	match state:
 		States.Walking:
@@ -79,6 +81,8 @@ func ChangeState(newState : States) -> void:
 				follow_target_3d.SetFixedTarget(random_target_3d.GetNextPoint())
 			target = null
 		States.Pursuit:
+			print("Setting pursuit target: ", target)
+			print("Pursuit speed: ", runSpeed)
 			follow_target_3d.Speed = runSpeed
 			follow_target_3d.SetTarget(target)
 
@@ -91,20 +95,24 @@ func _on_follow_target_3d_navigation_finished() -> void:
 	# follow_target_3d.SetFixedTarget(random_target_3d.GetNextPoint())
 
 func _on_simple_vision_3d_get_sight(body: Node3D) -> void:
+	print("Vision detected body: ", body.name)
 	target = body
 	ChangeState(States.Pursuit)
 
 func _on_simple_vision_3d_lost_sight() -> void:
+	print("Vision lost sight")
 	ChangeState(States.Walking)
 
 func _on_aggression_changed(factor: float) -> void:
 	# Update vision parameters based on aggression
 	# factor goes from 0.0 (start) to 1.0 (end)
-	# Directly use factor (0.0 to 1.0)
-	$SimpleVision3D.Distance = base_distance * factor
-	$SimpleVision3D.EndWidth = base_cone_width * factor
-	$SimpleVision3D.EndHeight = base_cone_height * factor
-	runSpeed = base_run_speed * factor
+	# Use a minimum of 0.3 so mobs always have some vision
+	var adjusted_factor = max(0.3, factor)
+	$SimpleVision3D.Distance = base_distance * adjusted_factor
+	$SimpleVision3D.EndWidth = base_cone_width * adjusted_factor
+	$SimpleVision3D.EndHeight = base_cone_height * adjusted_factor
+	# Keep pursuit speed constant at base value
+	runSpeed = base_run_speed
 	mob_aggression_factor = factor
 	
 	# CRITICAL: Rebuild the vision shape for changes to take effect
@@ -133,6 +141,14 @@ func die() -> void:
 	dead_mob.global_transform.origin.z = pos.z
 	dead_mob.global_transform.origin.y = 0.1
 	queue_free()
+
+func _on_interaction_zone_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		print("GAME OVER - Mob caught player!")
+		get_tree().paused = true
+		await get_tree().create_timer(2.0).timeout
+		get_tree().paused = false
+		get_tree().reload_current_scene()
 
 	
 

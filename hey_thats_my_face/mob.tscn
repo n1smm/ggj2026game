@@ -25,7 +25,7 @@ shape = SubResource("CapsuleShape3D_b3mxk")
 
 [node name="SimpleVision3D" type="Node3D" parent="." unique_id=1660342861]
 script = ExtResource("2_p11y5")
-Distance = 20.0
+Distance = 30.0
 BaseWidth = 1.0
 EndWidth = 10.0
 BaseHeight = 2.0

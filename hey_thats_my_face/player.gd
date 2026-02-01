@@ -138,7 +138,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	# Interaction zone positioning
-	var offset = 1.0
+	var offset = 0.5
 	var forward = -transform.basis.z.normalized()
 	$interaction_zone.global_transform.origin = global_transform.origin + forward * offset
 
