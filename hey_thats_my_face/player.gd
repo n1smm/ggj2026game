@@ -5,12 +5,16 @@ const NORMAL_SPEED = 5.0
 const CROUCH_SPEED = 2.5
 const JUMP_VELOCITY = 4.5
 const CROUCH_HEIGHT = 0.5
+const MAX_MASK_TRANSITIONS = 5
 
 var PICKABLES = {
 	"Scalpel": 0,
 	"Mask": 0,
-	"Doctor": 0
+	"Doctor": false
 	}
+
+@export var scalpel_max_durability = 15
+@export var scalpel_hit_loss_durability = 5
 
 @onready var interact_prompt_label: Label = get_node_or_null("../CanvasLayer/InteractionPrompt")
 @onready var time_label: Label = get_node_or_null("../CanvasLayer/Time")
@@ -67,7 +71,7 @@ func _physics_process(delta: float) -> void:
 			if interact_prompt_label:
 				interact_prompt_label.text = ""
 				interact_prompt_label.visible = false
-				PICKABLES["Scalpel"] -= 5
+				PICKABLES["Scalpel"] -= scalpel_hit_loss_durability
 				if GameManager:
 					GameManager.emit_signal("speed_up_mob")
 			can_kill = false
@@ -82,17 +86,17 @@ func _physics_process(delta: float) -> void:
 				interact_prompt_label.text = ""
 				interact_prompt_label.visible = false
 
-			# Check by method instead of name to handle dynamic instances
 			if pickup_target.has_method("handle_face"):
-				PICKABLES["Mask"] = 1
+				PICKABLES["Mask"] = MAX_MASK_TRANSITIONS
 				pickup_target.handle_face()
+				GameManager.start_timer()
 				print("harvested face/mask")
 			elif pickup_target.name == "Scalpel":
-				PICKABLES["Scalpel"] = 15
+				PICKABLES["Scalpel"] = scalpel_max_durability
 				pickup_target.queue_free()
 				print("scalpel")
 			elif pickup_target.name == "Doctor":
-				PICKABLES["Doctor"] = 4
+				PICKABLES["Doctor"] = true
 				print("doctor mask")
 			else:
 				print("unknown pickable: " + pickup_target.name)
@@ -219,3 +223,9 @@ func _on_interaction_zone_area_exited(area: Area3D) -> void:
 
 func _on_aggression_changed(factor: float) -> void:
 	aggression = factor
+	if PICKABLES["Mask"] != 0:
+		var mask_transition = int(MAX_MASK_TRANSITIONS - ceil(factor * MAX_MASK_TRANSITIONS))
+		print("mask transition: ", mask_transition)
+		PICKABLES["Mask"] = mask_transition
+
+		
