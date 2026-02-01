@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://m4siwdrt0i3w"]
+
+[ext_resource type="PackedScene" uid="uid://c2y8vlhmm8a1n" path="res://Scenes/door.tscn" id="1_mbeea"]
+
+[node name="Special_door" unique_id=578705689 instance=ExtResource("1_mbeea")]
+special_door = true

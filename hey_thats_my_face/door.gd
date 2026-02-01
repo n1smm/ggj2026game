@@ -15,6 +15,11 @@ func _ready():
 	_target_angle = _current_angle
 	add_to_group("interactable")
 	$Area3D.add_to_group("interactable")
+	if GameManager:
+		GameManager.doctor_mask_gained.connect(_on_doctor_mask_gained)
+
+func _on_doctor_mask_gained() -> void:
+	_can_open_special = true
 
 func _process(delta):
 	if abs(_current_angle - _target_angle) > 0.1:

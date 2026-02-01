@@ -29,8 +29,6 @@ func aggiorna_immagine(indice: int):
 	var slot_1 = get_child(0)
 	if indice < icone_slot_1.size():
 		slot_1.texture = icone_slot_1[indice]
-<<<<<<< HEAD
-=======
 
 func aggiorna_arma(durability: int):
 	var slot = get_child(1)
@@ -38,5 +36,3 @@ func aggiorna_arma(durability: int):
 		slot.modulate.a = 1.0
 	else:
 		slot.modulate.a = 0.15
-
->>>>>>> a078d7bbe0cb1823c69e79e610ba7a8343a37522
