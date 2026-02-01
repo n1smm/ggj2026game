@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://byxdf1ri247w7"]
 
+[ext_resource type="ArrayMesh" uid="uid://bxe2xmqawhcfn" path="res://Assets/3dmodels/bench/bench/bench.obj" id="1_ryvpg"]
+[ext_resource type="Texture2D" uid="uid://b7uccox6w82yq" path="res://Assets/3dmodels/bench/bench/Chairs_tables_1-color.png" id="2_2vwdg"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_8hs46"]
 size = Vector3(3, 1, 0.6)
 
-[sub_resource type="BoxMesh" id="BoxMesh_5u0xg"]
-size = Vector3(3, 1, 0.6)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_victy"]
+albedo_texture = ExtResource("2_2vwdg")
 
 [node name="Sedia" type="Node3D" unique_id=222270244]
 
@@ -14,7 +17,7 @@ size = Vector3(3, 1, 0.6)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_8hs46")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1201513065]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh = SubResource("BoxMesh_5u0xg")
-skeleton = NodePath("../..")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D" unique_id=2003339162]
+transform = Transform3D(-1, 8.742277e-08, 0, -6.103222e-10, -0.006981272, 0.99997556, 8.7420645e-08, 0.99997556, 0.006981272, 0, 0, 0)
+mesh = ExtResource("1_ryvpg")
+surface_material_override/0 = SubResource("StandardMaterial3D_victy")

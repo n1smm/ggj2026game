@@ -7,7 +7,7 @@ enum States {
 }
 
 
-@export var walkSpeed : float = 1.0
+@export var walkSpeed : float = 3.0
 @export var runSpeed : float = 5.0
 @export var patrol_points: Array[Marker3D] = []
 
