@@ -9,10 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://21tmhshkn0ba" path="res://Assets/Faces/3.PNG" id="6_61e0q"]
 [ext_resource type="Texture2D" uid="uid://cv8roh12p6xgu" path="res://Assets/Faces/4.PNG" id="7_w4uu1"]
 [ext_resource type="Texture2D" uid="uid://jgs2b33clktl" path="res://Assets/Faces/good.PNG" id="8_tvokg"]
+[ext_resource type="Texture2D" uid="uid://30hk5bnmiujd" path="res://Assets/Faces/doctorface.PNG" id="9_marse"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v13jd"]
 
 [sub_resource type="SystemFont" id="SystemFont_ia1lp"]
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_ivxwx"]
 font = SubResource("SystemFont_ia1lp")
@@ -20,6 +22,7 @@ font_size = 50
 font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_sasra"]
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_marse"]
 font = SubResource("SystemFont_sasra")
@@ -65,7 +68,7 @@ offset_bottom = 150.0
 theme_override_constants/separation = 800
 alignment = 1
 script = ExtResource("1_cpnfq")
-icone_slot_1 = Array[Texture2D]([ExtResource("1_v13jd"), ExtResource("7_w4uu1"), ExtResource("6_61e0q"), ExtResource("5_3r5a1"), ExtResource("4_marse"), ExtResource("3_ivxwx"), ExtResource("8_tvokg")])
+icone_slot_1 = Array[Texture2D]([ExtResource("1_v13jd"), ExtResource("7_w4uu1"), ExtResource("6_61e0q"), ExtResource("5_3r5a1"), ExtResource("4_marse"), ExtResource("3_ivxwx"), ExtResource("8_tvokg"), ExtResource("9_marse"), null])
 
 [node name="Face" type="TextureRect" parent="CanvasLayer/inventory/Panel/HBoxContainer" unique_id=356421245]
 custom_minimum_size = Vector2(220, 220)
