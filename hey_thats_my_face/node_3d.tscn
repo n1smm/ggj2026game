@@ -1,15 +1,21 @@
 [gd_scene format=3 uid="uid://dc7ulrjpape5f"]
 
 [ext_resource type="ArrayMesh" uid="uid://n7dm3qxnbw21" path="res://Assets/models/prova/model.obj" id="1_noarx"]
-[ext_resource type="Shader" uid="uid://barr67i45fwv7" path="res://Assets/shaders/kuwahara_spatial.gdshader" id="2_a0tk4"]
+[ext_resource type="Shader" uid="uid://s448flph1vvc" path="res://Assets/shaders/gradient_shader.gdshader" id="2_noarx"]
+[ext_resource type="PackedScene" uid="uid://doubgh2jo7coc" path="res://mob.tscn" id="3_a0tk4"]
+[ext_resource type="Texture2D" uid="uid://cy0crlajn8pis" path="res://Assets/models/nurse_dead.PNG" id="4_r3fl7"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_r3fl7"]
 size = Vector2(6, 6)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jka67"]
-render_priority = 0
-shader = ExtResource("2_a0tk4")
-shader_parameter/radius = 3
+shader = ExtResource("2_noarx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r3fl7"]
+shader = ExtResource("2_noarx")
+
+[sub_resource type="Environment" id="Environment_r3fl7"]
+tonemap_mode = 1
 
 [node name="Node3D" type="Node3D" unique_id=58610446]
 
@@ -18,12 +24,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4859877, 1.1920929e-07, 1.2
 mesh = ExtResource("1_noarx")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=663061509]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.838001, 3.8460512, 0)
+transform = Transform3D(0.74923325, 0, -0.66230625, 0, 1, 0, 0.66230625, 0, 0.74923325, -13.682837, 3.8460512, 8.232458)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D" unique_id=1922770960]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+visible = false
 mesh = SubResource("QuadMesh_r3fl7")
 surface_material_override/0 = SubResource("ShaderMaterial_jka67")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2046544521]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3703, 0, 0)
+
+[node name="Mob" parent="." unique_id=524789304 instance=ExtResource("3_a0tk4")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -11.904214, 3.1955357, 3.1067495)
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1103874770]
+transform = Transform3D(0.8960762, 0, -0.4439003, 0, 1, 0, 0.4439003, 0, 0.8960762, -9.218581, 4.1615515, 1.6696081)
+texture = ExtResource("4_r3fl7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=881936383]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=470856722]
+visible = false
+material = SubResource("ShaderMaterial_r3fl7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=63863602]
+environment = SubResource("Environment_r3fl7")

@@ -1,8 +1,7 @@
-[gd_scene format=3 uid="uid://d0ouwjbktdggd"]
+[gd_scene format=3 uid="uid://c2r4pib6min7q"]
 
-[ext_resource type="Texture2D" uid="uid://bdsoxictxeuwv" path="res://Assets/main_bg.PNG" id="1_xhh6f"]
-[ext_resource type="Script" uid="uid://4ji0ws52wbed" path="res://Scripts/menu.gd" id="2_cayip"]
-[ext_resource type="FontFile" uid="uid://bmmwgrx5rnptd" path="res://Assets/models/HorrorScribbles.ttf" id="2_xhh6f"]
+[ext_resource type="Texture2D" uid="uid://hrxh378fw7aj" path="res://Assets/neutral.PNG" id="1_qpupn"]
+[ext_resource type="FontFile" uid="uid://bmmwgrx5rnptd" path="res://Assets/models/HorrorScribbles.ttf" id="2_2oltb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cayip"]
 
@@ -14,8 +13,6 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jsrd8"]
 
-[sub_resource type="GDScript" id="GDScript_xhh6f"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wbdvm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q3rjx"]
@@ -25,13 +22,6 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7qvly"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rfqti"]
-
-[sub_resource type="GDScript" id="GDScript_cayip"]
-script/source = "extends Node
-
-func  _on_quit_button_pressed():
-	get_tree().quit()
-"
 
 [node name="Menu" type="Control" unique_id=106846548]
 custom_minimum_size = Vector2(1, 1)
@@ -46,8 +36,19 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
-texture = ExtResource("1_xhh6f")
+texture = ExtResource("1_qpupn")
 expand_mode = 1
+
+[node name="Label" type="Label" parent="TextureRect" unique_id=1891755561]
+layout_mode = 0
+offset_left = 316.0
+offset_top = 292.0
+offset_right = 818.0
+offset_bottom = 355.0
+theme_override_colors/font_color = Color(0.101867564, 0.10186755, 0.10186755, 1)
+theme_override_fonts/font = ExtResource("2_2oltb")
+theme_override_font_sizes/font_size = 72
+text = "They catched you..."
 
 [node name="MenuBox" type="VBoxContainer" parent="." unique_id=376007306]
 layout_mode = 0
@@ -55,12 +56,11 @@ offset_left = 220.0
 offset_top = 450.0
 offset_right = 420.0
 offset_bottom = 550.0
-script = ExtResource("2_cayip")
 
 [node name="PlayButton" type="Button" parent="MenuBox" unique_id=826421646]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.18282422, 0.17596191, 0.16751033, 1)
-theme_override_fonts/font = ExtResource("2_xhh6f")
+theme_override_fonts/font = ExtResource("2_2oltb")
 theme_override_font_sizes/font_size = 72
 theme_override_styles/normal = SubResource("StyleBoxEmpty_cayip")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_xhh6f")
@@ -68,12 +68,11 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_158mb")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_wwsa2")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
 text = "Play"
-script = SubResource("GDScript_xhh6f")
 
 [node name="QuitButton" type="Button" parent="MenuBox" unique_id=471132167]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.18717575, 0.18717632, 0.18717596, 1)
-theme_override_fonts/font = ExtResource("2_xhh6f")
+theme_override_fonts/font = ExtResource("2_2oltb")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wbdvm")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_q3rjx")
@@ -81,6 +80,3 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_6swd7")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_7qvly")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_rfqti")
 text = "Quit"
-script = SubResource("GDScript_cayip")
-
-[connection signal="pressed" from="MenuBox/QuitButton" to="MenuBox/PlayButton" method="_on_quit_button_pressed"]
