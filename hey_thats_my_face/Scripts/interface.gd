@@ -20,4 +20,3 @@ func aggiorna_immagine(indice: int):
 	var slot_1 = get_child(0)
 	if indice < icone_slot_1.size():
 		slot_1.texture = icone_slot_1[indice]
-
