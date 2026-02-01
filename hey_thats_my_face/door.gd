@@ -4,6 +4,7 @@ extends StaticBody3D
 @export var open_speed: float = 5.0
 @export var is_open: bool = false
 @export var special_door: bool = false
+@export var dont_open: bool = false
 
 var _current_angle: float = 0.0
 var _target_angle: float = 0.0
@@ -28,7 +29,7 @@ func _process(delta):
 		rotation_degrees.y = _current_angle
 
 func open_door():
-	if not special_door or _can_open_special:
+	if not special_door or _can_open_special or  not dont_open:
 		is_open = true
 		_target_angle = open_angle
 
