@@ -1,15 +1,9 @@
 [gd_scene format=3 uid="uid://c2y8vlhmm8a1n"]
 
 [ext_resource type="Script" uid="uid://y035xb4ktkci" path="res://door.gd" id="1_w6aom"]
+[ext_resource type="ArrayMesh" uid="uid://dgcxibadkgont" path="res://Assets/3dmodels/door2/door2/door2.obj" id="2_p0e35"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h7j2x"]
-size = Vector3(1.5, 3, 0.2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w6aom"]
-albedo_color = Color(0.6855474, 0.17629004, 0.16559666, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_h7j2x"]
-material = SubResource("StandardMaterial3D_w6aom")
 size = Vector3(1.5, 3, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w6aom"]
@@ -23,8 +17,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1.25, 0)
 shape = SubResource("BoxShape3D_h7j2x")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1057402363]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1.5, 0)
-mesh = SubResource("BoxMesh_h7j2x")
+transform = Transform3D(1.5963352, 0, 0, 0, -4.371141e-08, 1.4165801, 0, -1.0000005, -6.192068e-08, -0.034799695, 0.011589885, 0)
+mesh = ExtResource("2_p0e35")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=489836035 groups=["doors"]]
 

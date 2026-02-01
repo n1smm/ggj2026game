@@ -70,6 +70,18 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
 text = "Play"
 script = SubResource("GDScript_xhh6f")
 
+[node name="TestButton" type="Button" parent="MenuBox" unique_id=571324891]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18717575, 0.18717632, 0.18717596, 1)
+theme_override_fonts/font = ExtResource("2_xhh6f")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wbdvm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6swd7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_7qvly")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rfqti")
+text = "Test"
+
 [node name="QuitButton" type="Button" parent="MenuBox" unique_id=471132167]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.18717575, 0.18717632, 0.18717596, 1)

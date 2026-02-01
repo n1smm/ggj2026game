@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://d21ie5jycv1ob" path="res://Scripts/hospital.gd" id="1_40gwp"]
 [ext_resource type="Texture2D" uid="uid://dygx4c7hxr142" path="res://Assets/models/floor.PNG" id="2_f41g6"]
-[ext_resource type="PackedScene" uid="uid://vs0hfbx3mtb3" path="res://Scenes/Interface/interface.tscn" id="2_ogmn5"]
 [ext_resource type="PackedScene" uid="uid://c2y8vlhmm8a1n" path="res://Scenes/door.tscn" id="3_ftcn8"]
 [ext_resource type="PackedScene" uid="uid://ykv6yr4mhf74" path="res://scalpel.tscn" id="4_8p3p6"]
 [ext_resource type="PackedScene" uid="uid://psyddhrxhb3x" path="res://player.tscn" id="4_jial7"]
@@ -362,7 +361,7 @@ size = Vector3(25, 1, 0.4)
 [node name="Hospital" type="Node3D" unique_id=556548433]
 script = ExtResource("1_40gwp")
 
-[node name="Interface" parent="." unique_id=398585456 instance=ExtResource("2_ogmn5")]
+[node name="Interface" parent="." unique_id=398585456 instance=ExtResource("17_lcbq2")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1412752751]
 environment = SubResource("Environment_ftcn8")
@@ -859,10 +858,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.513428, 2.0127585, 4.3982
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Walls/hallway_walls/Wall17" unique_id=1969789129]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2034245, 0, 0)
 shape = SubResource("BoxShape3D_npvfs")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/hallway_walls/Wall17/CollisionShape3D" unique_id=1595029669]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007789612, -0.01538825, 0)
-mesh = SubResource("BoxMesh_ogmn5")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/Walls/hallway_walls/Wall17/CollisionShape3D" unique_id=334164040]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007789612, 0, -9.517458)
@@ -1915,10 +1910,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9985614, 0.6933627, 24.4405
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.938301, 0.6933627, 24.388718)
 
 [node name="Carrozzina4" parent="." unique_id=2100256698 instance=ExtResource("17_lcbq2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.841164, 0.6933627, 29.557243)
+transform = Transform3D(0.54151756, 0, -0.84068954, 0, 1, 0, 0.84068954, 0, 0.54151756, 33.304794, 0.6933627, 29.946163)
 
 [node name="Carrozzina5" parent="." unique_id=1782765797 instance=ExtResource("17_lcbq2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7394, 0.6933627, 33.102753)
+transform = Transform3D(-0.039992332, 0, -0.9992, 0, 1, 0, 0.9992, 0, -0.039992332, 33.7394, 0.6933627, 35.471886)
 
 [node name="Sedia6" parent="." unique_id=1932213248 instance=ExtResource("10_7na1r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.481841, -0.056637287, 36.089497)

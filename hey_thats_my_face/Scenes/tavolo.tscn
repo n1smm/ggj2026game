@@ -4,7 +4,10 @@
 size = Vector3(3, 1.2, 1.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wmaom"]
-size = Vector3(3, 1.2, 1.5)
+size = Vector3(3, 0.1, 1.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w4iij"]
+size = Vector3(0.1, 1.2, 0.1)
 
 [node name="Tavolo" type="Node3D" unique_id=416616173]
 
@@ -14,4 +17,21 @@ size = Vector3(3, 1.2, 1.5)
 shape = SubResource("BoxShape3D_wmaom")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D" unique_id=645597276]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38623747, 0)
 mesh = SubResource("BoxMesh_wmaom")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D/MeshInstance3D" unique_id=1342287978]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4362415, -0.64590204, 0.68245506)
+mesh = SubResource("BoxMesh_w4iij")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D/MeshInstance3D" unique_id=757019395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4362415, -0.6487086, -0.69168603)
+mesh = SubResource("BoxMesh_w4iij")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D/MeshInstance3D" unique_id=659889601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4427007, -0.63264203, -0.69168603)
+mesh = SubResource("BoxMesh_w4iij")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D/MeshInstance3D" unique_id=1666687636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4427007, -0.6453676, 0.6688166)
+mesh = SubResource("BoxMesh_w4iij")
