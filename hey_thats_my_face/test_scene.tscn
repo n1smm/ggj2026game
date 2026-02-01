@@ -2,21 +2,22 @@
 
 [ext_resource type="PackedScene" uid="uid://psyddhrxhb3x" path="res://player.tscn" id="1_ia1lp"]
 [ext_resource type="Script" uid="uid://dvfqv64w2qgi1" path="res://test_scene.gd" id="1_sasra"]
+[ext_resource type="PackedScene" uid="uid://vs0hfbx3mtb3" path="res://Scenes/Interface/interface.tscn" id="2_8pr8v"]
 [ext_resource type="PackedScene" uid="uid://doubgh2jo7coc" path="res://mob.tscn" id="2_sasra"]
 [ext_resource type="ArrayMesh" uid="uid://c0e8e67q1r66e" path="res://Assets/bisturi.obj" id="4_2nij2"]
 [ext_resource type="Script" uid="uid://duk4qermpym17" path="res://scalpel.gd" id="5_7cbxl"]
 
-[sub_resource type="SystemFont" id="SystemFont_ia1lp"]
+[sub_resource type="SystemFont" id="SystemFont_buypi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sasra"]
-font = SubResource("SystemFont_ia1lp")
+font = SubResource("SystemFont_buypi")
 font_size = 50
 font_color = Color(1, 0, 0, 1)
 
-[sub_resource type="SystemFont" id="SystemFont_sasra"]
+[sub_resource type="SystemFont" id="SystemFont_njel3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_coq8p"]
-font = SubResource("SystemFont_sasra")
+font = SubResource("SystemFont_njel3")
 font_size = 30
 font_color = Color(1, 0, 0, 1)
 
@@ -44,7 +45,10 @@ radius = 0.07421875
 [node name="TestScene" type="Node3D" unique_id=2033671578]
 script = ExtResource("1_sasra")
 
+[node name="Interface" parent="." unique_id=398585456 instance=ExtResource("2_8pr8v")]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=667232596]
+visible = false
 
 [node name="InteractionPrompt" type="Label" parent="CanvasLayer" unique_id=56152820]
 offset_left = 367.0

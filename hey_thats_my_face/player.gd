@@ -16,8 +16,8 @@ var PICKABLES = {
 @export var scalpel_max_durability = 15
 @export var scalpel_hit_loss_durability = 5
 
-@onready var interact_prompt_label: Label = get_node_or_null("../CanvasLayer/InteractionPrompt")
-@onready var time_label: Label = get_node_or_null("../CanvasLayer/Time")
+@onready var interact_prompt_label: Label = get_node_or_null("../Interface/CanvasLayer/InteractionPrompt")
+@onready var time_label: Label = get_node_or_null("../Interface/CanvasLayer/Time")
 var is_crouching = false
 var speed = CROUCH_SPEED if is_crouching else NORMAL_SPEED
 var normal_height = 0.0
@@ -64,7 +64,8 @@ func _physics_process(delta: float) -> void:
 	#handle interact
 	if Input.is_action_just_pressed("interact"):
 		if can_kill and kill_target and PICKABLES["Scalpel"] > 0:
-			if kill_target.has_method("die"):
+			var killed_name  = kill_target.name
+			if kill_target.has_method("die") and killed_name != "Doctor":
 				kill_target.die()
 			else:
 				kill_target.queue_free()
@@ -74,6 +75,12 @@ func _physics_process(delta: float) -> void:
 				PICKABLES["Scalpel"] -= scalpel_hit_loss_durability
 				if GameManager:
 					GameManager.emit_signal("speed_up_mob")
+			if killed_name == "Doctor":
+				PICKABLES["Doctor"] = true
+				if GameManager:
+					GameManager.emit_signal("doctor_mask_gained")
+				print("you killed Doctor!")
+
 			can_kill = false
 			kill_target = null
 		elif can_interact and interact_target:
@@ -227,5 +234,12 @@ func _on_aggression_changed(factor: float) -> void:
 		var mask_transition = int(MAX_MASK_TRANSITIONS - ceil(factor * MAX_MASK_TRANSITIONS))
 		print("mask transition: ", mask_transition)
 		PICKABLES["Mask"] = int(mask_transition)
+		if GameManager:
+			GameManager.emit_signal("mask_progress_changed", mask_transition)
+
+	if PICKABLES["Doctor"]:
+		if GameManager:
+			GameManager.stop_timer_doctor()
+		
 
 		
