@@ -80,6 +80,7 @@ func _physics_process(delta: float) -> void:
 				PICKABLES["Doctor"] = true
 				if GameManager:
 					GameManager.emit_signal("doctor_mask_gained")
+					GameManager.emit_signal("mask_progress_changed", 5)
 				print("you killed Doctor!")
 
 			can_kill = false
