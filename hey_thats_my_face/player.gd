@@ -5,7 +5,7 @@ const NORMAL_SPEED = 5.0
 const CROUCH_SPEED = 2.5
 const JUMP_VELOCITY = 4.5
 const CROUCH_HEIGHT = 0.5
-const MAX_MASK_TRANSITIONS = 5
+const MAX_MASK_TRANSITIONS = 6
 
 var PICKABLES = {
 	"Scalpel": 0,
