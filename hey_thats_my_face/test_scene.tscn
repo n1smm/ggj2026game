@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dbg0x6mkt7vrq"]
 
 [ext_resource type="PackedScene" uid="uid://psyddhrxhb3x" path="res://player.tscn" id="1_ia1lp"]
-[ext_resource type="Script" uid="uid://dvfqv64w2qgi1" path="res://test_scene.gd" id="1_sasra"]
+[ext_resource type="Script" path="res://test_scene.gd" id="1_sasra"]
 [ext_resource type="PackedScene" uid="uid://doubgh2jo7coc" path="res://mob.tscn" id="2_sasra"]
 [ext_resource type="ArrayMesh" uid="uid://c0e8e67q1r66e" path="res://Assets/bisturi.obj" id="4_2nij2"]
 [ext_resource type="Script" uid="uid://duk4qermpym17" path="res://scalpel.gd" id="5_7cbxl"]
