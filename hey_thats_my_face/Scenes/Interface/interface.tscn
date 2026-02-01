@@ -65,7 +65,7 @@ offset_bottom = 150.0
 theme_override_constants/separation = 800
 alignment = 1
 script = ExtResource("1_cpnfq")
-icone_slot_1 = Array[Texture2D]([ExtResource("1_v13jd"), ExtResource("3_ivxwx"), ExtResource("4_marse"), ExtResource("5_3r5a1"), ExtResource("6_61e0q"), ExtResource("7_w4uu1"), ExtResource("8_tvokg")])
+icone_slot_1 = Array[Texture2D]([ExtResource("1_v13jd"), ExtResource("7_w4uu1"), ExtResource("6_61e0q"), ExtResource("5_3r5a1"), ExtResource("4_marse"), ExtResource("3_ivxwx"), ExtResource("8_tvokg")])
 
 [node name="Face" type="TextureRect" parent="CanvasLayer/inventory/Panel/HBoxContainer" unique_id=356421245]
 custom_minimum_size = Vector2(220, 220)

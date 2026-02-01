@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c2r4pib6min7q"]
 
+[ext_resource type="Script" uid="uid://dwum8uwebmity" path="res://Scripts/gameover.gd" id="1_gameover"]
 [ext_resource type="Texture2D" uid="uid://hrxh378fw7aj" path="res://Assets/neutral.PNG" id="1_qpupn"]
 [ext_resource type="FontFile" uid="uid://bmmwgrx5rnptd" path="res://Assets/models/HorrorScribbles.ttf" id="2_2oltb"]
 
@@ -31,6 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gameover")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1274573402]
 layout_mode = 0
@@ -48,7 +50,7 @@ offset_bottom = 355.0
 theme_override_colors/font_color = Color(0.101867564, 0.10186755, 0.10186755, 1)
 theme_override_fonts/font = ExtResource("2_2oltb")
 theme_override_font_sizes/font_size = 72
-text = "They catched you..."
+text = "They caught you..."
 
 [node name="MenuBox" type="VBoxContainer" parent="." unique_id=376007306]
 layout_mode = 0

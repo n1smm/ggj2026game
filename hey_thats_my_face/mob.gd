@@ -116,7 +116,7 @@ func _on_aggression_changed(factor: float) -> void:
 	mob_aggression_factor = factor
 	
 	# CRITICAL: Rebuild the vision shape for changes to take effect
-	# rebuild_vision_cone()
+	rebuild_vision_cone()
 
 func _on_speed_up() -> void:
 	print("signal on speed change")
@@ -145,33 +145,30 @@ func die() -> void:
 func _on_interaction_zone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		print("GAME OVER - Mob caught player!")
-		get_tree().paused = true
-		await get_tree().create_timer(2.0).timeout
-		get_tree().paused = false
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_file("res://Scenes/gameover.tscn")
 	
 
-# func rebuild_vision_cone() -> void:
-# 	# Rebuild the vision cone shape with updated parameters
-# 	var vision_shape = ConvexPolygonShape3D.new()
-# 	var points = PackedVector3Array()
-# 	var dist = $SimpleVision3D.Distance
-# 	var base_w = $SimpleVision3D.BaseWidth
-# 	var end_w = $SimpleVision3D.EndWidth
-# 	var base_h = $SimpleVision3D.BaseHeight
-# 	var end_h = $SimpleVision3D.EndHeight
-# 	var base_cone = $SimpleVision3D.BaseConeSize
+func rebuild_vision_cone() -> void:
+	# Rebuild the vision cone shape with updated parameters
+	var vision_shape = ConvexPolygonShape3D.new()
+	var points = PackedVector3Array()
+	var dist = $SimpleVision3D.Distance
+	var base_w = $SimpleVision3D.BaseWidth
+	var end_w = $SimpleVision3D.EndWidth
+	var base_h = $SimpleVision3D.BaseHeight
+	var end_h = $SimpleVision3D.EndHeight
+	var base_cone = $SimpleVision3D.BaseConeSize
 	
-# 	points.append(Vector3(0, 0, 0))
-# 	points.append(Vector3(base_w/2, 0, -base_cone))
-# 	points.append(Vector3(end_w/2, 0, -dist))
-# 	points.append(Vector3(-(base_w/2), 0, -base_cone))
-# 	points.append(Vector3(-(end_w/2), 0, -dist))
-# 	points.append(Vector3(0, base_h, 0))
-# 	points.append(Vector3(base_w/2, base_h, -base_cone))
-# 	points.append(Vector3(end_w/2, end_h, -dist))
-# 	points.append(Vector3(-(base_w/2), base_h, -base_cone))
-# 	points.append(Vector3(-(end_w/2), end_h, -dist))
+	points.append(Vector3(0, 0, 0))
+	points.append(Vector3(base_w/2, 0, -base_cone))
+	points.append(Vector3(end_w/2, 0, -dist))
+	points.append(Vector3(-(base_w/2), 0, -base_cone))
+	points.append(Vector3(-(end_w/2), 0, -dist))
+	points.append(Vector3(0, base_h, 0))
+	points.append(Vector3(base_w/2, base_h, -base_cone))
+	points.append(Vector3(end_w/2, end_h, -dist))
+	points.append(Vector3(-(base_w/2), base_h, -base_cone))
+	points.append(Vector3(-(end_w/2), end_h, -dist))
 	
-# 	vision_shape.points = points
-# 	$SimpleVision3D.VisionArea.shape = vision_shape
+	vision_shape.points = points
+	$SimpleVision3D.VisionArea.shape = vision_shape
