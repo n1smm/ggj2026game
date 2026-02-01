@@ -1,3 +1,7 @@
 [gd_scene format=3 uid="uid://b2m5knjr3enir"]
 
+[ext_resource type="AudioStream" uid="uid://cmqj8jtw4d68x" path="res://Assets/audio/ceiling-fan-72370.mp3" id="1_l04ps"]
+
 [node name="Audio" type="AudioStreamPlayer" unique_id=448661850]
+stream = ExtResource("1_l04ps")
+autoplay = true

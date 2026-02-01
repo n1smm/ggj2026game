@@ -1,10 +1,13 @@
-[gd_scene format=3 uid="uid://dbxmcdc2153c8"]
+[gd_scene format=3 uid="uid://ipx7ojl7ncbj"]
+
+[ext_resource type="ArrayMesh" uid="uid://dsk830xianlyh" path="res://Assets/3dmodels/flebo/flebo/flebo.obj" id="1_q1stq"]
+[ext_resource type="Texture2D" uid="uid://d02p2w0x1domq" path="res://Assets/3dmodels/flebo/flebo/IV_Pole-roughness.png" id="2_mwt4p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4dr3g"]
 size = Vector3(0.5, 2, 0.5)
 
-[sub_resource type="BoxMesh" id="BoxMesh_4dr3g"]
-size = Vector3(0.5, 2, 0.5)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ty78c"]
+albedo_texture = ExtResource("2_mwt4p")
 
 [node name="Flebo" type="Node3D" unique_id=386931341]
 
@@ -15,5 +18,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_4dr3g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=954154255]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("BoxMesh_4dr3g")
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1, 0)
+mesh = ExtResource("1_q1stq")
+surface_material_override/0 = SubResource("StandardMaterial3D_ty78c")

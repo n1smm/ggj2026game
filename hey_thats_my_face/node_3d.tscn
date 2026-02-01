@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://s448flph1vvc" path="res://Assets/shaders/gradient_shader.gdshader" id="2_noarx"]
 [ext_resource type="PackedScene" uid="uid://doubgh2jo7coc" path="res://mob.tscn" id="3_a0tk4"]
 [ext_resource type="Texture2D" uid="uid://cy0crlajn8pis" path="res://Assets/models/nurse_dead.PNG" id="4_r3fl7"]
+[ext_resource type="ArrayMesh" uid="uid://dmdk6b3l4c52b" path="res://Assets/3dmodels/wheelchair/Wheelchair.obj" id="5_jka67"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_r3fl7"]
 size = Vector2(6, 6)
@@ -57,3 +58,7 @@ grow_vertical = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=63863602]
 environment = SubResource("Environment_r3fl7")
+
+[node name="Untitled(1)" type="MeshInstance3D" parent="." unique_id=1069649623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.186197, 4.9300513, 33.4387)
+mesh = ExtResource("5_jka67")
